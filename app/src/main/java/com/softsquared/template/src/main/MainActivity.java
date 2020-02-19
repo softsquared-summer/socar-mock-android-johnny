@@ -1,5 +1,6 @@
 package com.softsquared.template.src.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -9,6 +10,7 @@ import androidx.annotation.Nullable;
 import com.softsquared.template.R;
 import com.softsquared.template.src.BaseActivity;
 import com.softsquared.template.src.main.interfaces.MainActivityView;
+import com.softsquared.template.src.task.BasicTaskActivity;
 
 public class MainActivity extends BaseActivity implements MainActivityView {
     private TextView mTvHelloWorld;
@@ -47,6 +49,15 @@ public class MainActivity extends BaseActivity implements MainActivityView {
                 break;
             default:
                 break;
+        }
+    }
+
+    public void moveOnClick(View view){
+        switch (view.getId()){
+            case R.id.go_to_basic_task:
+                Intent intent = new Intent(this, BasicTaskActivity.class);
+                startActivity(intent);
+                finish();
         }
     }
 }

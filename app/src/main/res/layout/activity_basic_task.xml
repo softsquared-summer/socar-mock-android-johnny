@@ -112,6 +112,7 @@
             android:id="@+id/basic_task_tv_time_information"
             android:layout_width="match_parent"
             android:layout_height="118dp"
+            android:orientation="horizontal"
             android:background="@drawable/half_rounded_back"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -120,15 +121,56 @@
             app:layout_constraintVertical_bias="1.0">
 
             <ImageView
-                android:layout_width="30dp"
+                android:id="@+id/basic_task_iv_clock"
+                android:layout_width="20dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
                 android:scaleType="fitCenter"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.08"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/fixed_time_icon" />
+
+            <ImageButton
+                android:id="@+id/basic_task_btn_set_time"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.80"
+                app:layout_constraintStart_toEndOf="@id/basic_task_tv_total_time"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/upside_arrow_icon" />
+
+            <TextView
+                android:id="@+id/basic_task_tv_total_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="이용시간 설정하기"
+                android:textColor="@android:color/black"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.11"
+                app:layout_constraintStart_toEndOf="@+id/basic_task_iv_clock"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.35" />
+
+            <TextView
+                android:id="@+id/basic_task_tv_description_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="오늘 02:00 - 06:00"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toEndOf="@+id/basic_task_iv_clock"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.65" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

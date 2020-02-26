@@ -17,6 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning"
+        android:screenOrientation="portrait"
         tools:targetApi="n">
         <activity android:name=".src.main.MainActivity">
             <intent-filter>

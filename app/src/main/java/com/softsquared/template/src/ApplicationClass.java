@@ -20,9 +20,9 @@ public class ApplicationClass extends Application {
     public static MediaType MEDIA_TYPE_JPEG = MediaType.parse("image/jpeg");
 
     // 테스트 서버 주소
-    public static String BASE_URL = "http://apis.newvement.com/";
+//    public static String BASE_URL = "http://apis.newvement.com/";
     // 실서버 주소
-//    public static String BASE_URL = "https://template.softsquared.com/";
+    public static String BASE_URL = "http://softcar.shop/";
 
     public static SharedPreferences sSharedPreferences = null;
 
@@ -30,7 +30,7 @@ public class ApplicationClass extends Application {
     public static String TAG = "TEMPLATE_APP";
 
     // JWT Token 값
-    public static String X_ACCESS_TOKEN = "X-ACCESS-TOKEN";
+    public static String X_ACCESS_TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRlIjoiMjAyMC0wMi0yNiAxMzozNzo0NSIsImlkIjoia2toMDE5NjZAbmF2ZXIuY29tIiwicHciOiIkMnkkMTAkME9BTnpSZ01SV25nbDZ5MFN2ZktTLk9UVFFvWFZNR3lraDhYUUVreUswUFlFN1hENVJLdC4ifQ.bELbQdu-OPqy-78EZEfHDxqHncN-bL2fp1Ke5yueMhU";
 
     //날짜 형식
     public static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);

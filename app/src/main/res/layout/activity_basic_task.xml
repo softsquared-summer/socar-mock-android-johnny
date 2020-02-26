@@ -21,6 +21,7 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginBottom="37dp"
             app:layout_constraintVertical_bias="0.0">
 
         </RelativeLayout>
@@ -150,7 +151,7 @@
                 android:id="@+id/basic_task_tv_total_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="이용시간 설정하기"
+                android:text="@string/basic_task_time_setting"
                 android:textColor="@android:color/black"
                 android:textSize="19sp"
                 android:textStyle="bold"
@@ -178,14 +179,15 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
-        android:layout_gravity=""
+        android:layout_gravity="left"
         android:background="@color/colorPrimary"
         android:layout_width="290dp"
         android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <!--알람 종-->
             <RelativeLayout
@@ -196,30 +198,156 @@
                     android:id="@+id/basic_task_btn_iv_alarm_dot"
                     android:layout_width="7dp"
                     android:layout_height="7dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginTop="15dp"
                     android:layout_alignParentRight="true"
                     android:src="@drawable/alarm_dot"/>
 
                 <ImageButton
                     android:layout_width="35dp"
                     android:layout_height="40dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:layout_toStartOf="@id/basic_task_btn_iv_alarm_dot"
                     android:background="@android:color/transparent"
                     android:scaleType="fitCenter"
                     android:src="@drawable/alarm_icon" />
             </RelativeLayout>
 
-            <!-- -->
+            <!--사용자계정-->
+            <RelativeLayout
+                android:layout_height="100dp"
+                android:layout_width="wrap_content">
+
+                <TextView
+                    android:id="@+id/basic_task_drawer_tv_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="20dp"
+                    android:text="김주안"
+                    android:textColor="@color/colorDarker"
+                    android:textSize="28sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/basic_task_drawer_tv_user_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/basic_task_drawer_tv_user_name"
+                    android:layout_alignLeft="@id/basic_task_drawer_tv_user_name"
+                    android:text="sgh04069@naver.com"
+                    android:textSize="14sp" />
+
+                <ImageButton
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="16dp"
+                    android:paddingEnd="5dp"
+                    android:paddingStart="5dp"
+                    android:paddingBottom="43dp"
+                    android:paddingTop="43dp"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/right_side_arrow_icon" />
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/drawer_ad_example" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:layout_marginStart="25dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorDarker"
+                    android:text="이용내역"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:layout_marginStart="25dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorDarker"
+                    android:text="내 쿠폰"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:layout_marginStart="25dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorDarker"
+                    android:text="쏘카클럽"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:layout_marginStart="25dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorDarker"
+                    android:text="혜택받기"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:layout_marginStart="25dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorDarker"
+                    android:text="친구 초대하기"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:layout_marginStart="25dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorDarker"
+                    android:text="쏘카플러스"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:layout_marginStart="25dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorDarker"
+                    android:text="쏘카 플랜"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:layout_marginStart="25dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorDarker"
+                    android:text="쏘카 비즈니스"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:layout_marginStart="25dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorDarker"
+                    android:text="고객센터"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
     </ScrollView>
-
-
-
-        
-
 
 </androidx.drawerlayout.widget.DrawerLayout>

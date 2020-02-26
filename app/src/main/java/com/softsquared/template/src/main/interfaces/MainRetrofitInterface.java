@@ -1,6 +1,7 @@
 package com.softsquared.template.src.main.interfaces;
 
 import com.softsquared.template.src.main.models.DefaultResponse;
+import com.softsquared.template.src.main.models.SignUpInfo;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -23,4 +24,8 @@ public interface MainRetrofitInterface {
 
     @POST("/test")
     Call<DefaultResponse> postTest(@Body RequestBody params);
+
+    //쏘카회원가입
+    @POST("/user")
+    Call<DefaultResponse> signUp(@Body SignUpInfo signUpInfo);
 }

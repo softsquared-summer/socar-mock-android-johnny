@@ -2,4 +2,8 @@
     <string name="app_name">Template</string>
     <string name="loading">로딩중입니다.</string>
     <string name="network_error">네트워크 연결이 원활하지 않습니다.</string>
+
+    <string name="basic_task_time_setting">이용시간 설정하기</string>
+    <string name="basic_task_activity_location_service_not_activate">위치서비스 비활성화</string>
+    <string name="basic_task_activity_location_service_asking">앱을 사용하기 위해서는 위치 서비스가 필요합니다. 위치설정을 수정하시겠습니까?</string>
 </resources>

@@ -220,7 +220,8 @@ public class TimeSetActivity extends BaseActivity {
                     backToBasicTaskIntent.putExtra("returnDate",pickedReturnDate);
                     backToBasicTaskIntent.putExtra("returnHour",pickedReturnHour);
                     backToBasicTaskIntent.putExtra("returnMin",pickedReturnMin);
-                    backToBasicTaskIntent.putExtra("totalTime",mTvTotalTimeDescription.getText());
+                    backToBasicTaskIntent.putExtra("totalTimeDescription",mTvTotalTimeDescription.getText());
+                    backToBasicTaskIntent.putExtra("totalTime",mTvTotalTime.getText());
                     setResult(RESULT_OK,backToBasicTaskIntent);
                     finish();
                 }else{
@@ -254,9 +255,9 @@ public class TimeSetActivity extends BaseActivity {
         for(int i=0; i<5; i++){ borrowHead = borrowHead+pickedBorrowDate.charAt(i); }
         for(int i=0; i<5; i++){ returnHead = returnHead+pickedReturnDate.charAt(i); }
 
-        borrowTotalText = pickedBorrowDate+" "+String.format("%02d",pickedBorrowHour)+":"+String.format("%02d",pickedBorrowMin);
-        returnTotalText = pickedReturnDate+" "+String.format("%02d",pickedReturnHour)+":"+String.format("%02d",pickedReturnMin);
-        totalTimeDescription = borrowHead+" "+String.format("%02d",pickedBorrowHour)+":"+String.format("%02d",pickedBorrowMin)+" - "+returnHead+" "+String.format("%02d",pickedReturnHour)+":"+String.format("%02d",pickedReturnMin);
+        borrowTotalText = pickedBorrowDate+" "+String.format("%02d",pickedBorrowHour)+":"+String.format("%02d",10*pickedBorrowMin);
+        returnTotalText = pickedReturnDate+" "+String.format("%02d",pickedReturnHour)+":"+String.format("%02d",10*pickedReturnMin);
+        totalTimeDescription = borrowHead+" "+String.format("%02d",pickedBorrowHour)+":"+String.format("%02d",10*pickedBorrowMin)+" - "+returnHead+" "+String.format("%02d",pickedReturnHour)+":"+String.format("%02d",10*pickedReturnMin);
 
         if(pickedReturnMin-pickedBorrowMin > 0){
             minLong = pickedReturnMin - pickedBorrowMin;

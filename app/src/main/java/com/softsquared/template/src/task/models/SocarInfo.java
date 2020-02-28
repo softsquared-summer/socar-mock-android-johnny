@@ -8,7 +8,7 @@ public class SocarInfo {
     @SerializedName("model")
     String model;
     @SerializedName("cost")
-    int cost;
+    String cost;
     @SerializedName("profileUrl")
     String profileUrl;
     @SerializedName("available")
@@ -22,7 +22,7 @@ public class SocarInfo {
         return model;
     }
 
-    public int getCost() {
+    public String getCost() {
         return cost;
     }
 

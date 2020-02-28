@@ -1,5 +1,6 @@
 package com.softsquared.template.src.task.interfaces;
 
+import com.softsquared.template.src.task.models.InsuranceResponse;
 import com.softsquared.template.src.task.models.SocarResponse;
 import com.softsquared.template.src.task.models.SocarzoneResponse;
 
@@ -17,6 +18,13 @@ public interface TaskRetrofitInterface {
     @GET("/socarzone/{socarzoneNo}/cars")
     Call<SocarResponse> getSocarList(
             @Path("socarzoneNo") int socarzoneNo,
+            @Query("startTime") final Timestamp startTime,
+            @Query("endTime") final Timestamp endTime
+    );
+
+    @GET("/car/{carNo}/insurances")
+    Call<InsuranceResponse> getInsurance(
+            @Path("carNo") int carNo,
             @Query("startTime") final Timestamp startTime,
             @Query("endTime") final Timestamp endTime
     );

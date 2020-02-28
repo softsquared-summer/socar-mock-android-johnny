@@ -14,17 +14,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.softsquared.template.R;
 import com.softsquared.template.src.BaseActivity;
+import com.softsquared.template.src.task.adapter.SocarAdapter;
 import com.softsquared.template.src.task.interfaces.BasicTaskActivityView;
+import com.softsquared.template.src.task.models.InsuranceResponse;
 import com.softsquared.template.src.task.models.SocarInfo;
 import com.softsquared.template.src.task.models.SocarzoneInfo;
 
@@ -32,6 +37,7 @@ import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapView;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -60,16 +66,33 @@ public class BasicTaskActivity extends BaseActivity implements MapView.CurrentLo
     private ImageButton mBackButton;
     private ImageButton mCallTimeSetButton;
 
-    //시작부터 유저가 시간을 선택하지는 않기 때문에 디폴트로 시간을 넣어줌 - 보낼 쿼리또한 마찬가지 없으면 쏘카존 정보도 못받음
-    SimpleDateFormat mDateFormat = new SimpleDateFormat ("MM/dd hh:mm");
-    SimpleDateFormat mQueryDateFormat = new SimpleDateFormat("yy-MM-dd hh:mm");
+    private RecyclerView mSocarRecyclerView;
+    private SocarAdapter mSocarAdapter;
 
-    public String borrowDate = mDateFormat.format(Calendar.getInstance().getTime());
-    public int borrowHour;
-    public int borrowMin;
-    public String returnDate;
-    public int returnHour;
-    public int returnMin;
+    private TextView mTvSocarzoneName;
+    private TextView mTvSocarzoneNameClone;
+    private TextView mTvTime;
+    private TextView mTvTimeDescription;
+    private TextView mTvBottomTime;
+    private TextView mTvBottomTimeDescription;
+
+    //시작부터 유저가 시간을 선택하지는 않기 때문에 디폴트로 시간을 넣어줌 - 보낼 쿼리또한 마찬가지 없으면 쏘카존 정보도 못받음
+    SimpleDateFormat mDateFormat = new SimpleDateFormat ("MM/dd hh:");
+    SimpleDateFormat mQueryDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
+    public Calendar mDefaultDay;
+    public String mBorrowDate;
+    public String mStartTime;
+    public String mReturnDate;
+    public String mEndTime;
+
+    Timestamp mTsStartTime;
+    Timestamp mTsEndTime;
+
+    public int mBorrowHour;
+    public int mBorrowMin;
+    public int mReturnHour;
+    public int mReturnMin;
     public boolean isUserSetTime = false;
 
     @Override
@@ -77,7 +100,16 @@ public class BasicTaskActivity extends BaseActivity implements MapView.CurrentLo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basic_task);
 
-        Log.d("jooan",borrowDate);
+        //Default로 정해주는 값
+        mDefaultDay = Calendar.getInstance();
+        mBorrowDate = mDateFormat.format(mDefaultDay.getTime())+"00";
+        mStartTime = mQueryDateFormat.format(mDefaultDay.getTime());
+        mTsStartTime = Timestamp.valueOf(mStartTime);
+
+        mDefaultDay.add(Calendar.DATE,1);
+        mReturnDate = mDateFormat.format(mDefaultDay.getTime())+"00";
+        mEndTime = mQueryDateFormat.format(mDefaultDay.getTime());
+        mTsEndTime = Timestamp.valueOf(mEndTime);
 
         //카카오맵을 띄움
         mMapView = new MapView(this);
@@ -104,6 +136,17 @@ public class BasicTaskActivity extends BaseActivity implements MapView.CurrentLo
         mFixedPinLocation = findViewById(R.id.fixed_pin_loction_mark);
         mFixedPinShadow = findViewById(R.id.fixed_pin_shadow);
         mBackButton = findViewById(R.id.basic_task_btn_back);
+        mTvSocarzoneName = findViewById(R.id.basic_task_tv_socarzone_name);
+        mTvSocarzoneNameClone = findViewById(R.id.basic_task_tv_clone_name);
+
+        //하단 bottom sheet text 항목
+        mTvTime = findViewById(R.id.basic_task_tv_total_time);
+        mTvTimeDescription = findViewById(R.id.basic_task_tv_description_time);
+        mTvBottomTime = findViewById(R.id.basic_task_bottom_sheet_tv_set_time);
+        mTvBottomTimeDescription = findViewById(R.id.basic_task_bottom_sheet_tv_set_time_description);
+
+        mSocarRecyclerView = findViewById(R.id.basic_task_bottom_sheet_rv_socars);
+        mSocarRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         //CallBack으로 Behavior동안에 일어날 행동 기재
         mBottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
@@ -147,6 +190,22 @@ public class BasicTaskActivity extends BaseActivity implements MapView.CurrentLo
             }
         });
 
+        mTvBottomTimeDescription.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent callTimesetActivityIntent = new Intent(getApplicationContext(),TimeSetActivity.class);
+                startActivityForResult(callTimesetActivityIntent,TIME_SETTING_REQUEST_CODE);
+            }
+        });
+
+        mTvBottomTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent callTimesetActivityIntent = new Intent(getApplicationContext(),TimeSetActivity.class);
+                startActivityForResult(callTimesetActivityIntent,TIME_SETTING_REQUEST_CODE);
+            }
+        });
+
         //쏘카존 클릭 후 다시 돌아오는 버튼 클릭 리스너
         mBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -180,10 +239,14 @@ public class BasicTaskActivity extends BaseActivity implements MapView.CurrentLo
 
     //쏘카존 정보를 얻어오기 위한 함수
     private void tryGetSocarzone(){
-        showProgressDialog();
-
         final TaskService mainService = new TaskService(this);
         mainService.getSocarzone();
+    }
+
+    //쏘카리스트를 얻어오기 위한 함수
+    private void tryGetSocarList(int socarzonNo){
+        final TaskService socarService = new TaskService(this);
+        socarService.getSocarList(socarzonNo,mTsStartTime,mTsEndTime);
     }
 
     @Override
@@ -234,7 +297,39 @@ public class BasicTaskActivity extends BaseActivity implements MapView.CurrentLo
             case TIME_SETTING_REQUEST_CODE:
                 if(resultCode == RESULT_OK){
                     isUserSetTime = true;
-                    Toast.makeText(getApplicationContext(),data.getStringExtra("totalTime"),Toast.LENGTH_SHORT).show();
+                    mTvTime.setText(data.getStringExtra("totalTime"));
+                    mTvTimeDescription.setText(data.getStringExtra("totalTimeDescription"));
+                    mTvBottomTime.setText(data.getStringExtra("totalTime"));
+                    mTvBottomTimeDescription.setText(data.getStringExtra("totalTimeDescription"));
+
+                    String borrowDate=data.getStringExtra("borrowDate");
+                    String returnDate=data.getStringExtra("returnDate");
+                    String borrowDateEdit="";
+                    String returnDateEdit="";
+
+                    for(int i=0; i<2; i++){ borrowDateEdit += borrowDate.charAt(i);}
+                    borrowDateEdit+="-";
+                    for(int i=0; i<2; i++){ borrowDateEdit += borrowDate.charAt(i+3);}
+
+                    for(int i=0; i<2; i++){ returnDateEdit += returnDate.charAt(i);}
+                    returnDateEdit+="-";
+                    for(int i=0; i<2; i++){ returnDateEdit += returnDate.charAt(i+3);}
+
+                    String startTimeMessage = "2020-"
+                            +borrowDateEdit
+                            +String.format(" %02d:",data.getIntExtra("borrowHour",10))
+                            +String.format("%02d:",data.getIntExtra("borrowMin",10))
+                            +"00";
+                    String endTimeMessage = "2020-"
+                            +returnDateEdit
+                            +String.format(" %02d:",data.getIntExtra("returnHour",10))
+                            +String.format("%02d:",data.getIntExtra("returnMin",10))
+                            +"00";
+
+                    mTsStartTime = Timestamp.valueOf(startTimeMessage);
+                    mTsEndTime = Timestamp.valueOf(endTimeMessage);
+                    //Toast.makeText(getApplicationContext(),data.getStringExtra("borrowDate"),Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(),borrowDateEdit,Toast.LENGTH_SHORT).show();
                 }
         }
     }
@@ -322,12 +417,26 @@ public class BasicTaskActivity extends BaseActivity implements MapView.CurrentLo
     }
 
     @Override
-    public void validateSocarListSuccess(ArrayList<SocarInfo> socarInfo) {
-
+    public void validateSocarListSuccess(ArrayList<SocarInfo> socarInfo, String socarzoneAddress) {
+        mTvSocarzoneName.setText(socarzoneAddress);
+        mTvSocarzoneNameClone.setText(socarzoneAddress);
+        mSocarAdapter = new SocarAdapter(this,socarInfo);
+        mSocarRecyclerView.setAdapter(mSocarAdapter);
+        //Toast.makeText(getApplicationContext(),"경축 이제 거의 다왔다",Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void validateSocarListFailure(String fail) {
+
+    }
+
+    @Override
+    public void validateInsuranceSuccess(InsuranceResponse insurances) {
+
+    }
+
+    @Override
+    public void validateInsuranceFailure(String fail) {
 
     }
 
@@ -336,7 +445,7 @@ public class BasicTaskActivity extends BaseActivity implements MapView.CurrentLo
         for(int i=0; i<socarzoneInfos.size(); i++){
             MapPOIItem marker = new MapPOIItem();
             marker.setItemName(""+i);
-            marker.setTag(0);
+            marker.setTag(i);
             marker.setMapPoint(MapPoint.mapPointWithGeoCoord(socarzoneInfos.get(i).getLatitude(),socarzoneInfos.get(i).getLongitude()));
             marker.setMarkerType(MapPOIItem.MarkerType.CustomImage);
             marker.setCustomImageResourceId(R.drawable.socar_zone);
@@ -355,6 +464,9 @@ public class BasicTaskActivity extends BaseActivity implements MapView.CurrentLo
         mFixedPinShadow.setVisibility(View.INVISIBLE);
         mFixedPinLocation.setVisibility(View.INVISIBLE);
         mBackButton.setVisibility(View.VISIBLE);
+
+        int socarzoneNo = mapPOIItem.getTag();
+        tryGetSocarList(socarzoneNo);
     }
     @Override
     public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem) {

@@ -14,4 +14,7 @@
     <string name="time_set_period_warning">대여시각은 반납시각이후일 수 없습니다</string>
     <string name="set_time_set_time">시간을 선택하세요</string>
     <string name="time_set_time_set">최소 30분이상부터 대여가능합니다</string>
+    <string name="Basic_task_bottom_sheet_insurance_title">차량손해면책 상품 선택</string>
+    <string name="Basic_task_bottom_sheet_insurance_description">사고 시, 회원님이 부담할 최대한도 금액 보장 \n상품입니다.</string>
+    <string name="bottom_insurance_axa_include"><u>AXA 운전자보험 포함</u></string>
 </resources>

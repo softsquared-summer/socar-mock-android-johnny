@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.softsquared.template.src.task.interfaces.BasicTaskActivityView;
 import com.softsquared.template.src.task.interfaces.TaskRetrofitInterface;
+import com.softsquared.template.src.task.models.InsuranceResponse;
 import com.softsquared.template.src.task.models.SocarResponse;
 import com.softsquared.template.src.task.models.SocarzoneResponse;
 
@@ -52,11 +53,31 @@ public class TaskService {
                 if(socarResponse.getSocarResult() == null){
                     mBasicTaskActivityView.validateSocarListFailure(null);
                 }
-                mBasicTaskActivityView.validateSocarListSuccess(socarResponse.getSocarResult().getSocarList());
+                Log.d("jooan",socarResponse.toString());
+                mBasicTaskActivityView.validateSocarListSuccess(socarResponse.getSocarResult().getSocarList(),socarResponse.getSocarResult().getSocarzoneAddress());
             }
             @Override
             public void onFailure(Call<SocarResponse> call, Throwable t) {
                 mBasicTaskActivityView.validateSocarListFailure(null);
+            }
+        });
+    }
+
+    void getInsurance(int carNo, Timestamp startTime, Timestamp endTime){
+        final TaskRetrofitInterface taskRetrofitInterface = getRetrofit().create(TaskRetrofitInterface.class);
+
+        taskRetrofitInterface.getInsurance(carNo,startTime,endTime).enqueue(new Callback<InsuranceResponse>() {
+            @Override
+            public void onResponse(Call<InsuranceResponse> call, Response<InsuranceResponse> response) {
+                final InsuranceResponse insuranceResponse = response.body();
+                if(insuranceResponse.getResult()==null){
+                    mBasicTaskActivityView.validateInsuranceFailure(null);
+                }
+                mBasicTaskActivityView.validateInsuranceSuccess(insuranceResponse);
+            }
+            @Override
+            public void onFailure(Call<InsuranceResponse> call, Throwable t) {
+                mBasicTaskActivityView.validateInsuranceFailure(null);
             }
         });
     }

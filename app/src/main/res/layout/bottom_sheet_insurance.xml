@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/half_rounded_back"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        android:text="@string/Basic_task_bottom_sheet_insurance_title"
+        android:textSize="25dp"
+        android:textColor="@color/colorDarker"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Basic_task_bottom_sheet_insurance_description"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/colorDarker"
+        android:textSize="16sp"/>
+
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/bottom_insurance_btn_special"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="20dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/insurance_unChecked"
+            android:scaleType="fitCenter"/>
+
+        <TextView
+            android:id="@+id/bottom_insurance_tv_special_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="스페셜"
+            android:layout_marginStart="10dp"
+            android:textSize="16dp"
+            android:textColor="@color/colorDarker"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/bottom_insurance_btn_special"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+41710원"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="25dp"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:textColor="@color/colorDarker"
+        android:text="자기부담금 최대 5만원"
+        android:textSize="13dp"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginStart="58dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/logo_axa"
+            android:scaleType="fitCenter"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bottom_insurance_axa_include"
+            android:layout_gravity="center_vertical"
+            android:textSize="10dp"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/bottom_insurance_btn_standard"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="20dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/insurance_unChecked"
+            android:scaleType="fitCenter"/>
+
+        <TextView
+            android:id="@+id/bottom_insurance_tv_staandard_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="스탠다드"
+            android:layout_marginStart="10dp"
+            android:textSize="16dp"
+            android:textColor="@color/colorDarker"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/bottom_insurance_btn_standard"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+41710원"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="25dp"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:textColor="@color/colorDarker"
+        android:text="자기부담금 최대 30만원"
+        android:textSize="13dp"/>
+
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/bottom_insurance_btn_light"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="20dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/insurance_unChecked"
+            android:scaleType="fitCenter"/>
+
+        <TextView
+            android:id="@+id/bottom_insurance_tv_light_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="라이트"
+            android:layout_marginStart="10dp"
+            android:textSize="16dp"
+            android:textColor="@color/colorDarker"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/bottom_insurance_btn_light"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+41710원"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="25dp"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:textColor="@color/colorDarker"
+        android:layout_marginBottom="50dp"
+        android:text="자기부담금 최대 70만원"
+        android:textSize="13dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/colorAccent"
+        android:text="@string/set_time_confirm"
+        android:textColor="@color/colorPrimary"
+        android:textSize="17sp"/>
+
+</LinearLayout>

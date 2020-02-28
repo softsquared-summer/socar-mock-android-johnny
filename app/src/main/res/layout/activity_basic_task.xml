@@ -22,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="37dp"
-                app:layout_constraintVertical_bias="0.0"></RelativeLayout>
+                app:layout_constraintVertical_bias="0.0"/>
 
             <LinearLayout
                 android:id="@+id/basic_task_bottom_sheet"
@@ -52,16 +52,34 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <Button
-                    android:layout_width="50dp"
-                    android:layout_height="37dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="5dp"
-                    android:text="지상" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginTop="7dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/basic_task_btn_meaning_less"
+                        android:layout_width="50dp"
+                        android:layout_height="37dp"
+                        android:layout_marginStart="15dp"
+                        android:layout_gravity="center_vertical"
+                        android:text="지상" />
+
+                    <TextView
+                        android:id="@+id/basic_task_tv_clone_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:textSize="15sp"
+                        android:text="meaning_less" />
+
+                </LinearLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="60dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="20dp"
@@ -70,8 +88,8 @@
 
                     <ImageView
                         android:id="@+id/bottom_sheet_iv_timer_icon"
-                        android:layout_width="14dp"
-                        android:layout_height="14dp"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
                         android:layout_alignParentLeft="true"
                         android:layout_centerVertical="true"
                         android:src="@drawable/fixed_time_icon" />
@@ -85,19 +103,21 @@
                         android:layout_toRightOf="@id/bottom_sheet_iv_timer_icon"
                         android:text="@string/basic_task_time_setting"
                         android:textColor="@color/colorDarker"
-                        android:textSize="12sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/basic_task_bottom_sheet_tv_set_time_description"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:text="오늘 09:00 - 13:00"
-                        android:textSize="12sp" />
+                        android:textSize="14sp" />
                 </RelativeLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/basic_task_bottom_sheet_rv_socars"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -256,7 +276,8 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.11"
+                app:layout_constraintHorizontal_bias="0"
+                android:layout_marginStart="20dp"
                 app:layout_constraintStart_toEndOf="@+id/basic_task_iv_clock"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.35" />
@@ -266,9 +287,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="오늘 02:00 - 06:00"
+                android:layout_marginStart="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toEndOf="@+id/basic_task_iv_clock"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.65" />

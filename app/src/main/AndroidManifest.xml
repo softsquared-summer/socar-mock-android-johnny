@@ -28,6 +28,7 @@
         </activity>
 
         <activity android:name=".src.task.BasicTaskActivity"/>
+        <activity android:name=".src.task.TimeSetActivity" />
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"

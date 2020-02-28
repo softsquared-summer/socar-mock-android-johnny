@@ -64,4 +64,4 @@ public class ApplicationClass extends Application {
 
         return retrofit;
     }
-}
+}// 내꺼 알림인줄

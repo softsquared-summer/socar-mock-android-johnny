@@ -15,4 +15,18 @@
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
+    <style name="AppTheme.PickerTime" parent="Theme.AppCompat.Light.NoActionBar" >
+        <item name="android:textColorPrimary">@color/colorAccent</item>
+        <!--To remove divider of the number picker-->
+        <item name="colorControlNormal">@color/colorPrimaryDark</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="AppTheme.PickerDate" parent="Theme.AppCompat.Light.NoActionBar" >
+        <item name="android:textColorPrimary">@color/colorAccent</item>
+        <!--To remove divider of the number picker-->
+        <item name="colorControlNormal">@color/colorPrimaryDark</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+
 </resources>

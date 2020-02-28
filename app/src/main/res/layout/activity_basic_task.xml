@@ -12,19 +12,117 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:id="@+id/map_view"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/coordinatorLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/map_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="37dp"
+                app:layout_constraintVertical_bias="0.0"></RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/basic_task_bottom_sheet"
+                android:layout_width="match_parent"
+                android:layout_height="600dp"
+                android:background="@drawable/rounded_back"
+                android:orientation="vertical"
+                app:behavior_hideable="true"
+                app:behavior_peekHeight="115dp"
+                app:layout_behavior="@string/bottom_sheet_behavior">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:layout_marginTop="10dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/bottom_sheet_handle" />
+
+                <TextView
+                    android:id="@+id/basic_task_tv_socarzone_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="15dp"
+                    android:text="방화역(동) 공영주차장"
+                    android:textColor="@color/colorDarker"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:layout_width="50dp"
+                    android:layout_height="37dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="5dp"
+                    android:text="지상" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/stroke_up_down_back"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/bottom_sheet_iv_timer_icon"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/fixed_time_icon" />
+
+                    <TextView
+                        android:id="@+id/basic_task_bottom_sheet_tv_set_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_toRightOf="@id/bottom_sheet_iv_timer_icon"
+                        android:text="@string/basic_task_time_setting"
+                        android:textColor="@color/colorDarker"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:text="오늘 09:00 - 13:00"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp" />
+
+            </LinearLayout>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <ImageButton
+            android:id="@+id/basic_task_btn_back"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:visibility="invisible"
+            android:src="@drawable/btn_back"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.03"
+            app:layout_constraintStart_toEndOf="@+id/coordinatorLayout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginBottom="37dp"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintVertical_bias="0.015" />
 
-        </RelativeLayout>
 
         <ImageView
             android:id="@+id/fixed_pin_loction_mark"
@@ -116,6 +214,7 @@
             android:orientation="horizontal"
             android:background="@drawable/half_rounded_back"
             android:elevation="5dp"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
